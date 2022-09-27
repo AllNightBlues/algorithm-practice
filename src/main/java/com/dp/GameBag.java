@@ -105,11 +105,10 @@ public class GameBag {
                                 calcArray[i][j] = new ArrayElement(currentGoodsValue, goods[i]);
                             } else {
                                 //spareSpace bigger than zero then add the biggest value of spareSpace
-                                //spareSpace - 1 = actual index of spareSpace
+                                //spareSpace - 1 = actual index of prevent biggest spareSpace
                                 Set<Element> newElement = calcArray[preRow][spareSpace - 1].elements;
                                 newElement.add(goods[i]);
                                 calcArray[i][j] = new ArrayElement(currentGoodsValue, newElement);
-
                             }
                         }
                     }

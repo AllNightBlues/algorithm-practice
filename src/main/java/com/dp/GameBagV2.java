@@ -73,6 +73,27 @@ public class GameBagV2 {
         }
     }
 
+    /**
+     * rebuild goods detail of calc result
+     *
+     * @param axisX
+     * @param axisY
+     * @param calcArray
+     * @param goods
+     */
+    public String findWhich(int axisX, int axisY, int[][] calcArray, Element[] goods) {
+        StringBuilder sb = new StringBuilder();
+        if (axisX > 0) {
+            if (calcArray[axisX - 1][axisY] == calcArray[axisX][axisY]) {
+                sb.append(findWhich(axisX - 1, axisY, calcArray, goods));
+            } else {
+                sb.append(goods[axisX - 1].name + ",");
+                sb.append(findWhich(axisX - 1, axisY - goods[axisY - 1].cost, calcArray, goods));
+            }
+        }
+        return sb.toString();
+    }
+
 
 
 }

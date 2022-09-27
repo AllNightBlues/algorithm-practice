@@ -97,17 +97,18 @@ public class GameBag {
                         int currentGoodsValue = goods[i].value;
                         if (spareSpace > 0) {
                             currentGoodsValue += calcArray[preRow][spareSpace - 1].value;
-                            if (preRowValue >= currentGoodsValue) {
-                                calcArray[i][j] = calcArray[preRowValue][j];
+                        }
+                        if (preRowValue >= currentGoodsValue) {
+                            calcArray[i][j] = calcArray[preRowValue][j];
+                        } else {
+                            if (spareSpace == 0) {
+                                calcArray[i][j] = new ArrayElement(currentGoodsValue, goods[i]);
                             } else {
-                                if (spareSpace == 0) {
-                                    calcArray[i][j] = new ArrayElement(currentGoodsValue, goods[i]);
-                                } else {
-                                    Set<Element> newElement = (HashSet<Element>)(HashSet<Element>)calcArray[preRow][spareSpace - 1].elements;
-                                    newElement.add(goods[i]);
-                                    calcArray[i][j] = new ArrayElement(currentGoodsValue, newElement);
+                                //spareSpace bigger than zero then add the biggest value of spareSpace
+                                Set<Element> newElement = calcArray[preRow][spareSpace - 1].elements;
+                                newElement.add(goods[i]);
+                                calcArray[i][j] = new ArrayElement(currentGoodsValue, newElement);
 
-                                }
                             }
                         }
                     }
